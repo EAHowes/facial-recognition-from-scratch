@@ -1,2 +1,5 @@
 # Ignore all .npy embedding files
 *.npy
+
+# Cache files
+__pycache__/
