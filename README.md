@@ -9,20 +9,23 @@ facial-recognition-from-scratch
 │   ├── dbscan.py
 │   ├── k-means.py
 │   └── main.py
+├── data_generator_readme.md
 └── README.md
 
 -=-=-=-
-
+   ~~
 General Pipeline:
 1. Face Detection → Find where faces are in each image                              # Not from scratch
 2. Face Alignment → Normalize rotation, scale, and crop faces                       # Not from scratch
 3. Feature Extraction / Embedding → Convert each face into a numerical vector       # Not from scratch
-
+~~
+   
 (Where our project scope begins)
+1-3. Embeddings → Create synthetic facial embeddings to cluster
 4. Clustering → Group similar vectors together                                      # From scratch
 5. Labeling → Assign names or IDs to clusters once you know who’s who               # Using clustering
 
-Raw Images  →  Face Detection  →  Alignment  →  Embeddings.py  →  Clustering
+~~Raw Images  →  Face Detection  →  Alignment  → ~~ Embeddings.py  →  Clustering
 
 -=-=-=-=-
 
@@ -56,16 +59,16 @@ sample files (not a tree)
             - main.py
             - utils.py 
         - Embedding Gen / evaluation
-            - embeddings.py                         # likely use a pretrained embedder
+            - embeddings.py                         
             - README.md                             # explain how to run code
-        - Facial Detection / Alignment              # to make the project end-to-end (start from raw images)
+        - Facial Detection / Alignment              # Implement if we have extra time ... to make the project end-to-end (start from raw images)
             - detect_faces.py
             - align.py
 
     Ethan
-        - None established
+        - dbscan.py
     Mateo
-        - None established
+        - k-means.py
     Jose
-        - None established
+        - embeddings.py
 ```
