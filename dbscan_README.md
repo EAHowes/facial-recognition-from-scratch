@@ -1,3 +1,11 @@
+5:35 start time
+dbscan results
+eps: 1.061
+runtime: 3810.54 s
+points: 100000
+clusters: 1
+noise points: 795
+Purity: 0.1001  (based on 99205 non-noise points)
 ```
 DBSCAN for 10,000 points and minPts = 5 ... eps optimization
 eps = 1.061 
