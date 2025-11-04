@@ -1,23 +1,4 @@
 # This file is used to run the dbscan implementation in dbscan.py 
-import os
-import multiprocessing
-
-# Detect total logical CPU cores
-_total_cores = multiprocessing.cpu_count()
-
-# Leave 2 cores free (at least 1 core always used)
-_use_cores = max(1, _total_cores - 3)
-
-# Apply to FlexiBLAS and OpenMP environments
-os.environ["FLEXIBLAS_NUM_THREADS"] = str(_use_cores)
-os.environ["OMP_NUM_THREADS"] = str(_use_cores)
-
-# Optional: disable other BLAS vars to avoid oversubscription
-for var in ("OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
-    os.environ.pop(var, None)
-
-print(f"[FlexiBLAS/OpenBLAS] Using {_use_cores}/{_total_cores} threads for NumPy operations.")
-
 import time 
 import numpy as np
 from pathlib import Path 
