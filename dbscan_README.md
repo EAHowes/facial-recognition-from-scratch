@@ -1,3 +1,58 @@
+dbscan results
+eps: 1.0
+minPts: 8
+runtime: 1975.38 s
+points: 100000
+clusters: 11                                                                                                    
+noise points: 36750                                                                                             
+Purity: 1.0000  (based on 63250 non-noise points)
+
+dbscan results
+eps: 1.0
+minPts: 9 
+runtime: 1921.71 s 
+points: 100000
+clusters: 10
+noise points: 37969 
+Purity: 1.0000  (based on 62031 non-noise points
+
+dbscan results
+eps: 1.001
+minPts: 10
+runtime: 1922.82 s
+points: 100000
+clusters: 10
+noise points: 37616
+Purity: 1.0000  (based on 62384 non-noise points)
+
+dbscan results
+eps: 1.002
+minPts: 10
+runtime: 1935.33 s
+points: 100000
+clusters: 10
+noise points: 36058
+Purity: 1.0000  (based on 63942 non-noise points)
+
+dbscan results
+eps: 1.003
+minPts: 10
+runtime: 1922.74 s
+points: 100000
+clusters: 10
+noise points: 34505
+Purity: 1.0000  (based on 65495 non-noise points)
+
+dbscan results
+eps: 1.005
+minPts: 10
+runtime: 1925.67 s
+points: 100000
+clusters: 10
+noise points: 31534
+Purity: 1.0000  (based on 68466 non-noise points)
+
+
 5:35 start time
 dbscan results
 eps: 1.061
