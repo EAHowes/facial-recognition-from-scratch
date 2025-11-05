@@ -1,3 +1,4 @@
+```
 dbscan results
 eps: 1.0
 minPts: 8
@@ -61,7 +62,7 @@ points: 100000
 clusters: 1
 noise points: 795
 Purity: 0.1001  (based on 99205 non-noise points)
-```
+
 DBSCAN for 10,000 points and minPts = 5 ... eps optimization
 eps = 1.061 
 
