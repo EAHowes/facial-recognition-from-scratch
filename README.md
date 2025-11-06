@@ -9,17 +9,19 @@ In theory, given embeddings pulled from real facial detection softwares, our fro
 Tree:
 facial-recognition-from-scratch
 ├── data
+│   ├── dbscan_optimization_info.md
 │   └── embeddings.py
-├── data_generator_readme.md
-├── dbscan_optimization_info.md
-├── dbscan_README.md
-├── README.md
-└── src
-    ├── dbscan.py
-    ├── dbscan-trial.py
-    ├── dbscan_wrapper.py
-    ├── k_means.py
-    └── main.py
+├── docs
+│   ├── data_generator_readme.md
+│   ├── dbscan_README.md
+│   └── k_means_readme.md
+├── src
+│   ├── dbscan.py
+│   ├── dbscan_wrapper.py
+│   ├── k_means.py
+│   ├── k_means_wrapper.py
+│   └── main.py
+└── README.md
 
 -=-=-=-
 
