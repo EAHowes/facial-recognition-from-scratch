@@ -93,6 +93,7 @@ class Kmeans:
         self.centroids = None      # store learned centroids
         self.labels = None         # stores final cluster labels
         self.inertia = None        # stores final intertia(how tight clusters are)
+        self.n_iter_ = 0           # track how many iterations are completed 
 
     def fit_data(self, X):
         self.X = X
@@ -110,7 +111,8 @@ class Kmeans:
             convergence = np.linalg.norm(updated_centroids - self.centroids)                    # check if change in clusters flattens out
             self.centroids = updated_centroids                                                  # update stored centroids
             self.labels = labels
-
+            
+            self.n_iter_ += 1
             if convergence <= self.tol: #break loop, clusters arent moving
                 break
 
