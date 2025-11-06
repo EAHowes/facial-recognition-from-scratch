@@ -1,22 +1,8 @@
 # k-means implementation
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.datasets import load_iris
-from sklearn.preprocessing import Normalizer
-"""""
-def compute_distance(data, centroids): #cosine distance 
-   
-    # Normalize data and centroids to unit vectors
-    data_norm = data / (np.linalg.norm(data, axis=1, keepdims=True) + 1e-12)
-    cent_norm = centroids / (np.linalg.norm(centroids, axis=1, keepdims=True) + 1e-12)
 
-    # cosine similarity
-    similarity = data_norm @ cent_norm.T  # dot product
-    # convert to cosine distance
-    distance = 1 - similarity
-    # clip numerical floating point errors to keep valid range
-    return np.clip(distance, 0, 2)
-"""""
+
 def compute_distance (data, centroids): # euclidean distance 
     x2 = np.sum(data**2, axis = 1, keepdims=True) # square norm of each data point
     c2 = np.sum(centroids**2, axis = 1) # squared norm of each centriod
@@ -24,6 +10,16 @@ def compute_distance (data, centroids): # euclidean distance
     dist_squared = x2 + c2 - 2*xC # euclidean dist^2 formula
     return np.sqrt(np.maximum(dist_squared, 0)) # returns actual distance 
 
+""""
+def compute_distance(data, centroids): #cosine distance 
+   
+    # Normalize data and centroids to unit vectors
+    data_norm = data / (np.linalg.norm(data, axis=1, keepdims=True) + 1e-12)
+    cent_norm = centroids / (np.linalg.norm(centroids, axis=1, keepdims=True) + 1e-12)
+    cos_similarity = data_norm @ cent_norm.T  # dot product
+    distance = 1 - cos_similarity # convert to cosine distance
+    return np.clip(distance, 0, 2)# clip numerical floating point errors to keep valid range
+"""
 def initalize_centroids (data, k):  # initalize/assignment 
     first_idx = np.random.randint(data.shape[0]) # random select a centriod 
     centroids = [data[first_idx]] 
@@ -61,7 +57,7 @@ def update_centroids (data, labels, k, old_centroids = None): # updating
                 far_idx = int(np.argmax(assign_dist)) # finds point farthest from current centriod 
                 new_centroids[i] = data[far_idx] # assigns it to a new centriod for cluster i 
             else:
-                new_centroids = data[np.random.randomint(data.shape[0])] # no old centriods exist, sets it to a random data
+                new_centroids[i] = data[np.random.randint(data.shape[0])] # no old centriods exist, sets it to a random data
     
     return new_centroids
 
@@ -73,37 +69,37 @@ def compute_inertia(min_dists): # measures how tight clusters are
 class Kmeans:
 
     def __init__(self, K=10, max_iters = 20, plot_steps = False, tol = 1e-4):
-        self.K = K
-        self.max_iters = max_iters
-        self.plot_steps = plot_steps
-        self.tol = tol
-        self.centroids = None
-        self.labels = None
-        self.inertia = None
+        self.K = K #number of cluster
+        self.max_iters = max_iters # max  k means iterations 
+        self.tol = tol #convergence tolerance (meaning the clusters arent changing)
+        self.centroids = None #store learned centroids
+        self.labels = None #stores final cluster labels
+        self.inertia = None #stores final intertia(how tight clusters are)
 
     def fit_data(self, X):
         self.X = X
-        self.n_samples, self.n_features = X.shape 
+        n_samples, self.n_features = X.shape # row and column data points in the dataset
 
-        self.centriods = initalize_centroids(X, self.K) #initlizae K centroids
+        self.centroids = initalize_centroids(X, self.K) #initlizae K centroids
 
         for _ in range(self.max_iters):
             dist = compute_distance(X, self.centroids) #compute distance from each point to each centroid
-            labels= np.argmin(dist, axis = 1) 
-            #this below might be wrong 
-            updated_centroids = update_centroids(X,labels,self.K, old_centroids= self.centriods)
-            convergence = np.linalg.norm (updated_centroids - self.centroids)
-            self.centroids = update_centroids
+            labels= np.argmin(dist, axis = 1)  #assigns each sample to its closet centroid
+           
+            min_dists = dist[np.arange(n_samples), labels] #minimum distance between point i and its centroid
+            updated_centroids = update_centroids(X,labels,self.K, old_centroids= self.centroids) #find the distance between the updated centroids and its prevous position
+            convergence = np.linalg.norm(updated_centroids - self.centroids) # check if change in clusters flattens out
+            self.centroids = updated_centroids #update stored centroids
             self.labels = labels
 
-            if convergence <= self.tol:
+            if convergence <= self.tol: #break loop, clusters arent moving
                 break
-                
-            self.inertia = compute_inertia(dist)
-            return self 
-
-
-
+        #store final label, min distances, and the inertia         
+        self.labels = labels    
+        min_dists = dist[np.arange(n_samples), labels]
+        self.inertia = compute_inertia(min_dists)
+           
+        return self 
 
 
 
