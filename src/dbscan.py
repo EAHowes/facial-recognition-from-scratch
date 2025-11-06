@@ -4,6 +4,7 @@ import numpy as np
 
 def dbscan(dataSet, eps, minPts):
     # Scans all unvisited points and labels them accordingly
+    # Core DBSCAN functionality implemented here with grow_cluster and region_query helper functions below
 
     labels_out = [0] * len(dataSet)   # initialize all points to unvisited
 
@@ -48,7 +49,7 @@ def grow_cluster(dataSet, labels_out, point, neighborPts, current_cluster, eps, 
                     if n not in queued:
                         neighborPts.append(n)
                         queued.add(n)
-        
+
         i += 1
 
 def region_query(dataSet, point, eps):
