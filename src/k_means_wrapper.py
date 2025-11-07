@@ -8,7 +8,7 @@ if __name__ == "__main__":
     labels = np.load("data/labels.npy")
 
     K = 10
-    print(f"Running K-Means with K={K}...")
+    print(f"Running K-Means with K={K}")
 
     start = time.time()
     km = Kmeans(K=K, max_iters= 5)
