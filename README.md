@@ -1,4 +1,6 @@
 ```text
+INDIVIDUAL FILE READMEs ARE LOCATED IN /docs ... NAVIGATE THERE FOR INSTRUCTIONS ON HOW TO RUN FILES
+
 This project aims to find an optimal solution for facial recognition clustering by comparing kmeans and dbscan algorithms.
 
 To focus on clustering algoritm development, we chose to create synthetic facial embeddings for testing.
