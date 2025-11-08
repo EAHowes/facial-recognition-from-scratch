@@ -6,7 +6,7 @@ from dbscan import dbscan
 
 if __name__ == "__main__":
     # Final values for optimized dbscan
-    EPS = 1.07
+    EPS = 1.007
     MINPTS = 10
 
     EMBEDDINGS_ARRAY = np.load(Path("../data/embeddings.npy"))
