@@ -1,6 +1,6 @@
 ```
 optimal values:
-eps = 1.07
+eps = 1.007
 minpts = 10
 
 dbscan results
