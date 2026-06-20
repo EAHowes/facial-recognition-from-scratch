@@ -1,22 +1,30 @@
+# Facial Recognition from Scratch
+
+**Team JME** — Jose Ortega · Mateo Bedoya · Ethan Howes
+
+Comparing K-Means and DBSCAN clustering algorithms on synthetic facial embeddings, implemented from scratch in Python.
+
+> **Note:** Individual file documentation is in [`/docs`](./docs). Navigate there for instructions on how to run each component.
+
+---
+
+## Overview
+
+To focus on clustering algorithm development, we generate synthetic facial embeddings rather than processing real images. In theory, given embeddings pulled from real facial detection software, our from-scratch clustering algorithms should yield similar results.
+
+---
+
+## Project Structure
+
 ```text
-INDIVIDUAL FILE READMEs ARE LOCATED IN /docs ... NAVIGATE THERE FOR INSTRUCTIONS ON HOW TO RUN FILES
-
-This project aims to find an optimal solution for facial recognition clustering by comparing kmeans and dbscan algorithms.
-
-To focus on clustering algoritm development, we chose to create synthetic facial embeddings for testing.
-In theory, given embeddings pulled from real facial detection softwares, our from-scratch clustering algos should yield similar results.
-
--=-=-=-
-
-Tree:
 facial-recognition-from-scratch
 ├── data
-│   ├── dbscan_optimization_info.md
-│   └── embeddings.py
+│   ├── dbscan_optimization_info.md
+│   └── embeddings.py
 ├── docs
-│   ├── data_generator_readme.md
-│   ├── dbscan_README.md
-│   └── k_means_readme.md
+│   ├── data_generator_readme.md
+│   ├── dbscan_README.md
+│   └── k_means_readme.md
 ├── src
 │   ├── dbscan.py
 │   ├── dbscan_wrapper.py
@@ -24,66 +32,53 @@ facial-recognition-from-scratch
 │   ├── k_means_wrapper.py
 │   └── main.py
 └── README.md
-
--=-=-=-
-
-General Pipeline:
-1. Face Detection → Find where faces are in each image                              # Not in scope 
-2. Face Alignment → Normalize rotation, scale, and crop faces                       # Not in scope
-3. Feature Extraction / Embedding → Convert each face into a numerical vector       # Not in scope
-   
-(Where our project scope begins)
-3. Embeddings → Create synthetic facial embeddings to cluster
-4. Clustering → Group similar vectors together                                      # From scratch
-5. Labeling → Assign names or IDs to clusters once you know who’s who               # Using clustering
-
--=-=-=-=-
-
-Sources:
-
-    Semantic Scholar - Segmentation of Brain Tumour from MRI image – Analysis of K-means and DBSCAN Clustering
-        https://www.semanticscholar.org/paper/Segmentation-of-Brain-Tumour-from-MRI-image-%E2%80%93-of-Bandyopadhyay/a082abca6c53cc8d4f5fc80c7ad0fa83464cca48
-
-    Data Camp - A Guide to the DBSCAN Clustering Algorithm
-        https://www.datacamp.com/tutorial/dbscan-clustering-algorithm
-
-    Geeks for Geeks - DBSCAN Clustering in ML - Density based Clustering
-        https://www.geeksforgeeks.org/machine-learning/dbscan-clustering-in-ml-density-based-clustering/
-
-    Towards Data Science - Create a K-Means Clustering Algorithm from Scratch in Python
-        https://towardsdatascience.com/create-your-own-k-means-clustering-algorithm-in-python-d7d4c9077670/
-
-    VGGFace2 
-        Library of faces with labels for same / different person
-
--=-=--=-
-
-Responsibilities: 
-
-sample files (not a tree)
-├── main.py                         # Puts everything together and runs kmeans/dbscan on embeddings.npy
-├── embeddings.py                   # Converts images to vectors and saves them into .npy files for clustering 
-├── k-means.py                      # Scratch implementation of k-means ... uses cosine distance by default
-└── dbscan.py                       # Scratch implementation of dbscan ... somehow optimize for 100,000 faces
-
-    Open responsibilities:
-        - Algorithms
-            - k-means implementation
-            - DBSCAN implementation
-        - CLI / IO 
-            - main.py
-        - Embedding Gen 
-            - embeddings.py                         
-            - README.md                     # explain how to run code
-        - Facial Detection / Alignment      # Implement if we have extra time ... to make the project end-to-end (start from raw images)
-            - detect_faces.py
-            - align.py
-
-    Ethan
-        - dbscan.py
-    Mateo
-        - k-means.py
-    Jose
-        - embeddings.py
-
 ```
+
+---
+
+## Pipeline
+
+Steps 1–3 are out of scope; our project picks up at the embedding stage.
+
+1. ~~Face Detection — find where faces are in each image~~
+2. ~~Face Alignment — normalize rotation, scale, and crop faces~~
+3. ~~Feature Extraction / Embedding — convert each face into a numerical vector~~
+4. **Embeddings** — generate synthetic facial embeddings for clustering
+5. **Clustering** — group similar vectors together *(from scratch)*
+6. **Labeling** — assign names or IDs to clusters once identity is known
+
+---
+
+## Getting Started
+
+```bash
+# 1. Generate embeddings
+cd data
+python embeddings.py
+
+# 2. Run the CLI
+cd ../src
+python main.py
+```
+
+The CLI lets you run K-Means, DBSCAN, or both, and prints a side-by-side comparison of accuracy, runtime, and cluster statistics.
+
+---
+
+## Team
+
+| Name | File | Role |
+|------|------|------|
+| Ethan Howes | `src/dbscan.py` | DBSCAN implementation |
+| Mateo Bedoya | `src/k_means.py` | K-Means implementation |
+| Jose Ortega | `data/embeddings.py` | Embedding generation |
+
+---
+
+## References
+
+- [Segmentation of Brain Tumour from MRI image — Analysis of K-means and DBSCAN Clustering](https://www.semanticscholar.org/paper/Segmentation-of-Brain-Tumour-from-MRI-image-%E2%80%93-of-Bandyopadhyay/a082abca6c53cc8d4f5fc80c7ad0fa83464cca48) — Semantic Scholar
+- [A Guide to the DBSCAN Clustering Algorithm](https://www.datacamp.com/tutorial/dbscan-clustering-algorithm) — DataCamp
+- [DBSCAN Clustering in ML — Density Based Clustering](https://www.geeksforgeeks.org/machine-learning/dbscan-clustering-in-ml-density-based-clustering/) — GeeksForGeeks
+- [Create a K-Means Clustering Algorithm from Scratch in Python](https://towardsdatascience.com/create-your-own-k-means-clustering-algorithm-in-python-d7d4c9077670/) — Towards Data Science
+- [VGGFace2](https://github.com/ox-vgg/vgg_face2) — labeled face library for same/different person validation
